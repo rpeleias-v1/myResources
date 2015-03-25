@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans default-autowire="byType" 
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- Annotaded configuration for Spring Data -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.rodrigopeleias.myresources.security" />
+	<context:component-scan base-package="com.rodrigopeleias.myresources.model" />
+	<context:component-scan base-package="com.rodrigopeleias.myresources.dao" />
+	<context:component-scan base-package="com.rodrigopeleias.myresources.dao.impl" />
+	
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<beans:property name="driverClassName" value="org.postgresql.Driver" />
+		<beans:property name="url" value="jdbc:postgresql://localhost/myresources" />
+		<beans:property name="username" value="portal" />
+		<beans:property name="password" value="portal" />		
+	</beans:bean>
+	
+	<beans:bean id="hibernate4AnnotationSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="annotatedClasses" >
+			<beans:list>
+				<beans:value>com.rodrigopeleias.myresources.model.User</beans:value>
+				<beans:value>com.rodrigopeleias.myresources.model.Role</beans:value>							
+			</beans:list>
+		</beans:property>
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</beans:prop>				
+				<beans:prop key="hibernate.show_sql">false</beans:prop>
+				<beans:prop key="hibernate.format_sql">true</beans:prop>
+        		<beans:prop key="hibernate.connection.pool_size">1</beans:prop>
+        		<beans:prop key="hibernate.jdbc.batch_size">20</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
+			</beans:props>
+		</beans:property>
+		
+	</beans:bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotationSessionFactory" />
+	</beans:bean>
+
+</beans:beans>

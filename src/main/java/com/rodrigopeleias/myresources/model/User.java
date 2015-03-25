@@ -13,12 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name="USER_RESOURCE")
 public class User {
 	
 	@Id
 	@Column
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	private String username;
@@ -29,8 +29,25 @@ public class User {
 	
 	private Date dateCreation;
 	
-	
-	
+	@OneToMany
+	private List<Role> roles;
+		
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+		
+	public List<Role> getRoles() {
+		return roles;
+	}
+
 	@Override
 	public String toString() {
 		return "id="+id+", username="+username;
