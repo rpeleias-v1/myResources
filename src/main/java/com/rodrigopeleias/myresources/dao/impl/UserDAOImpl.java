@@ -15,7 +15,7 @@ import com.rodrigopeleias.myresources.model.User;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-	
+		
 	@Autowired
 	private SessionFactory sessionFactory;
 		
