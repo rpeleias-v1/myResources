@@ -80,4 +80,10 @@ public class UserManagerServiceImpl implements UserManagerService{
 	public void removeRole(int id) {
 		roleDAO.removeRole(id);
 	}
+
+	@Override
+	@Transactional
+	public List<Role> listRoles() {
+		return roleDAO.listRoles();
+	}
 }

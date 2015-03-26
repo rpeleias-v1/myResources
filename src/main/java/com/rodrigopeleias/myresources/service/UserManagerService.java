@@ -15,6 +15,7 @@ public interface UserManagerService {
 	void removeUser(int id);void addRole(Role role);
 	void updateRole(Role role);
 	Role getRoleByName(String rolename);
+	List<Role> listRoles();
 	void removeRole(int id);
 
 }

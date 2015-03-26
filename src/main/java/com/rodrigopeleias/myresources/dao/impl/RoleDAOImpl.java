@@ -1,5 +1,7 @@
 package com.rodrigopeleias.myresources.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,8 +44,13 @@ public class RoleDAOImpl implements RoleDAO {
 
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Role> listRoles() {
+		return getSession().createQuery("from Role").list();		
+	}
+	
 	private Session getSession() {
 		return this.sessionFactory.getCurrentSession();
 	}
-
 }
