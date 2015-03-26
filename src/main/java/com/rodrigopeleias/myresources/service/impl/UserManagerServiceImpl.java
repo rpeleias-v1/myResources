@@ -53,7 +53,7 @@ public class UserManagerServiceImpl implements UserManagerService{
 
 	@Override
 	@Transactional
-	public void removeUser(int id) {
+	public void removeUser(long id) {
 		userDAO.removeUser(id);		
 	}
 	
@@ -83,7 +83,7 @@ public class UserManagerServiceImpl implements UserManagerService{
 
 	@Override
 	@Transactional
-	public void removeRole(int id) {
+	public void removeRole(long id) {
 		roleDAO.removeRole(id);
 	}
 

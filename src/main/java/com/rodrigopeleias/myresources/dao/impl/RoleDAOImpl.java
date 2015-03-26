@@ -36,8 +36,8 @@ public class RoleDAOImpl implements RoleDAO {
 	}
 
 	@Override
-	public void removeRole(int id) {
-		Role role = (Role)getSession().load(Role.class, new Integer(id));
+	public void removeRole(long id) {
+		Role role = (Role)getSession().load(Role.class, new Long(id));
 		if (role != null) {
 			getSession().delete(role);
 		}
