@@ -12,7 +12,7 @@ import com.rodrigopeleias.myresources.model.Role;
 import com.rodrigopeleias.myresources.model.User;
 import com.rodrigopeleias.myresources.service.UserManagerService;
 
-@Service
+@Service("userManagerService")
 public class UserManagerServiceImpl implements UserManagerService{
 
 	@Autowired(required=true)
@@ -55,6 +55,12 @@ public class UserManagerServiceImpl implements UserManagerService{
 	@Transactional
 	public void removeUser(int id) {
 		userDAO.removeUser(id);		
+	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public User getUserById(long id) {
+		return userDAO.getUserById(id);
 	}
 
 	@Override

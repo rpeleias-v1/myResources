@@ -11,6 +11,7 @@ public interface UserManagerService {
 	void updateUser(User user);
 	List<User> listUsers();
 	User getUserByUsername(String username);
+	User getUserById(long id);
 	User getUserByUsernameAndPassword(String username, String password);
 	void removeUser(int id);void addRole(Role role);
 	void updateRole(Role role);

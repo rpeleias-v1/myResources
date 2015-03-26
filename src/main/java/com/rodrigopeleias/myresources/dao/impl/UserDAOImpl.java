@@ -7,13 +7,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.rodrigopeleias.myresources.dao.UserDAO;
 import com.rodrigopeleias.myresources.model.User;
 
-@Repository
+@Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
 		
 	@Autowired
@@ -63,6 +61,12 @@ public class UserDAOImpl implements UserDAO {
 		query.setString("username", username);
 		query.setString("password", password);
 		User user = (User)query.uniqueResult();
+		return user;
+	}
+	
+	@Override
+	public User getUserById(long id) {
+		User user= (User)getSession().get(User.class, new Long(id));
 		return user;
 	}
 	

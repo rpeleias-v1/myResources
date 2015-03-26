@@ -20,9 +20,9 @@
 	</authentication-manager>
 	
 	<http authentication-manager-ref="dao-auth" access-decision-manager-ref="accessDecisionManager">
-		<intercept-url pattern="/cms/**" access="Admin"/>
+		<intercept-url pattern="/cms/**" access="ROLE_ADMIN"/>
 		<form-login login-page="/login" authentication-failure-url="/denied"
-					username-parameter="username" password-parameter="password" default-target-url="/home"/>
+					username-parameter="username" password-parameter="password" default-target-url="/cms/users"/>
 		<logout invalidate-session="true" logout-success-url="/login" logout-url="/logout"/>
 		<access-denied-handler error-page="/denied"/>
 		<session-management invalid-session-url="/login">
