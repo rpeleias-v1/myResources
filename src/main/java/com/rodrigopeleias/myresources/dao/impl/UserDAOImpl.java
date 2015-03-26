@@ -40,7 +40,6 @@ public class UserDAOImpl implements UserDAO {
 		return users;
 	}
 
-	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	@Override
 	public User getUserByUsername(String username) {
 		Query query = getSession().createQuery("from User u join fetch u.roles where username = :username");

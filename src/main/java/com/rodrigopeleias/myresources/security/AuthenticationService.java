@@ -10,20 +10,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.rodrigopeleias.myresources.dao.UserDAO;
 import com.rodrigopeleias.myresources.model.Role;
 import com.rodrigopeleias.myresources.model.User;
+import com.rodrigopeleias.myresources.service.UserManagerService;
 
 public class AuthenticationService implements UserDetailsService {
 	
 	@Autowired
-	private UserDAO userDao;
+	private UserManagerService userManagerService;
 	
 	private static final String rolePrefix = "ROLE_";
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.getUserByUsername(username);
+		User user = userManagerService.getUserByUsername(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(username + " not found"); 
 		}

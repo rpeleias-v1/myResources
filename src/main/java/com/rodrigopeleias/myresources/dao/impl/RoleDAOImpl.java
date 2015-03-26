@@ -4,10 +4,12 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.rodrigopeleias.myresources.dao.RoleDAO;
 import com.rodrigopeleias.myresources.model.Role;
 
+@Repository
 public class RoleDAOImpl implements RoleDAO {
 	
 	@Autowired
