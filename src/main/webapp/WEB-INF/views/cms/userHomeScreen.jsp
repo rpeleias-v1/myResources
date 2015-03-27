@@ -9,7 +9,21 @@
 <title>My Resources System</title>
 </head>
 <body>
-<h1>Users Management</h1>
+
+<div>
+	<table>
+		<tr>
+			<td>
+				<h1>Users Management</h1>
+			</td>
+			<td colspan="2" style="float: right;">
+				<a href="<c:url value='/cms/users' />" >Users</a>
+				<a href="<c:url value='/cms/roles' />" >Roles</a>
+				<a href="<c:url value='/logout' />" >Logout</a>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <c:url var="addUsers" value="/cms/users/add"></c:url>
 
@@ -85,7 +99,7 @@
 				<td>${user.username}</td>
 				<td>${user.email}</td>
 				<td><a href="<c:url value='/cms/users/edit/${user.id}' />" >Edit</a></td>
-				<td><a href="<c:url value='/cms/users/remove/${user.id}' />" >Edit</a></td>
+				<td><a href="<c:url value='/cms/users/remove/${user.id}' />" >Remove</a></td>
 			</tr>
 		</c:forEach>
 	</table>
